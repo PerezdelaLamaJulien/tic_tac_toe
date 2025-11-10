@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tic_tac_toe/game/game_notifier.dart';
+import 'package:tic_tac_toe/game/models/game_mode.dart';
 import 'package:tic_tac_toe/game/models/game_state.dart';
+import 'package:tic_tac_toe/game/providers/game_provider.dart';
 import 'package:tic_tac_toe/ui/coin_flip.dart';
+import 'package:tic_tac_toe/ui/game_controls_panel.dart';
 import 'board_game.dart';
 
 class GameScreen extends ConsumerWidget {
@@ -24,9 +26,17 @@ class GameScreen extends ConsumerWidget {
                 spacing: 20,
                 children: [
                   Text(game.status, style: const TextStyle(fontSize: 24)),
-                  BoardGame(
-                    onStartGame: () => showCoinTossDialog(context, ref),
-                  ),
+                  BoardGame(),
+                  GameControlsPanel(
+                      onStartGame:(mode) =>
+                      {
+                        showCoinTossDialog(mode, context, ref)
+                      },
+                      onRestartGame: () =>
+                      {
+                        showCoinTossDialog(null, context, ref)
+                      }
+                  )
                 ],
               );
             } else {
@@ -34,9 +44,7 @@ class GameScreen extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Flexible(
-                    child: BoardGame(
-                      onStartGame: () => showCoinTossDialog(context, ref),
-                    ),
+                    child: BoardGame(),
                   ),
                   SizedBox(
                     width: 250,
@@ -50,11 +58,16 @@ class GameScreen extends ConsumerWidget {
                           textAlign: TextAlign.center,
                           style: const TextStyle(fontSize: 24),
                         ),
-                        ElevatedButton.icon(
-                          onPressed: () => showCoinTossDialog(context, ref),
-                          icon: const Icon(Icons.refresh),
-                          label: const Text("Rejouer"),
-                        ),
+                        GameControlsPanel(
+                            onStartGame:(mode) =>
+                            {
+                              showCoinTossDialog(mode, context, ref)
+                            },
+                            onRestartGame: () =>
+                            {
+                              showCoinTossDialog(null, context, ref)
+                            }
+                        )
                       ],
                     ),
                   ),
@@ -67,7 +80,12 @@ class GameScreen extends ConsumerWidget {
     );
   }
 
-  Future<void> showCoinTossDialog(BuildContext context, WidgetRef ref) async {
+  Future<void> showCoinTossDialog(
+      GameMode? mode,
+      BuildContext context,
+      WidgetRef ref,
+      ) async {
+    mode ??= ref.read(gameProvider).mode;
     showDialog(
       context: context,
       builder: (context) => Dialog(
@@ -77,7 +95,12 @@ class GameScreen extends ConsumerWidget {
           padding: const EdgeInsets.all(24),
           child: CoinFlip(
             onResult: (player) {
-              ref.read(gameProvider.notifier).startGame(player);
+              switch(mode!){
+                case GameMode.local:
+                  ref.read(gameProvider.notifier).startGameAgainstLocalPlayer(player);
+                case GameMode.computer:
+                ref.read(gameProvider.notifier).startGameAgainstComputer(player);
+              }
               Navigator.pop(context);
             },
           ),

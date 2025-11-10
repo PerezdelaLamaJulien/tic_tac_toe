@@ -1,3 +1,4 @@
+import 'package:tic_tac_toe/game/models/game_mode.dart';
 import 'package:tic_tac_toe/game/models/player.dart';
 import 'package:tic_tac_toe/game/models/tile_state.dart';
 import 'package:tic_tac_toe/game/models/winning_line_state.dart';
@@ -8,12 +9,14 @@ class GameState {
   final Player? winner;
   final bool isDraw;
   final bool hasBegun;
+  final GameMode mode;
   final List<int>? winningLine;
   final WinningLineState? winningLineState;
 
   GameState({
     required this.board,
     required this.currentPlayer,
+    required this.mode,
     this.winner,
     this.winningLine,
     this.winningLineState,
@@ -25,6 +28,7 @@ class GameState {
     return GameState(
       board: List.filled(9, TileState.empty),
       currentPlayer: Player.one,
+      mode: GameMode.local,
     );
   }
 
@@ -36,6 +40,7 @@ class GameState {
     bool? hasBegun,
     List<int>? winningLine,
     WinningLineState? winningLineState,
+    GameMode? mode,
   }) {
     return GameState(
       board: board ?? this.board,
@@ -45,6 +50,7 @@ class GameState {
       hasBegun: hasBegun ?? this.hasBegun,
       winningLine: winningLine ?? this.winningLine,
       winningLineState: winningLineState ?? this.winningLineState,
+      mode: mode ?? this.mode,
     );
   }
 }
