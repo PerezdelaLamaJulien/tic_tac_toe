@@ -6,12 +6,14 @@ class BoardTile extends StatelessWidget {
   final TileState state;
   final VoidCallback onTap;
   final bool isHighlighted;
+  final bool gameHasBegun;
   final WinningLineState? winningLineState;
 
   const BoardTile({
     super.key,
     required this.state,
     required this.onTap,
+    required this.gameHasBegun,
     this.isHighlighted = false,
     this.winningLineState,
   });
@@ -19,7 +21,7 @@ class BoardTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: state == TileState.empty ? onTap : null,
+      onTap: gameHasBegun && state == TileState.empty ? onTap : null,
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -28,7 +30,7 @@ class BoardTile extends StatelessWidget {
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey.shade400, width: 1.5),
               color: isHighlighted
-                  ? state.backgroundColor.withOpacity(0.1)
+                  ? state.backgroundColor.withAlpha(25)
                   : Colors.transparent,
             ),
             child: Center(
@@ -45,12 +47,13 @@ class BoardTile extends StatelessWidget {
 
           if (isHighlighted && winningLineState != null)
             Transform(
-              transform: winningLineState!.matrix4Transform(MediaQuery.of(context).orientation),
+              transform: winningLineState!.matrix4Transform(
+                MediaQuery.of(context).orientation,
+              ),
               child: Container(width: 200, height: 6, color: state.iconColor),
             ),
         ],
       ),
     );
   }
-
 }
