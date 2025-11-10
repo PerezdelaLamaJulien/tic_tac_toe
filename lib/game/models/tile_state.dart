@@ -19,7 +19,7 @@ extension TileStateExtension on TileState {
       case TileState.one:
         return Colors.indigo;
       case TileState.two:
-        return Colors.red;
+        return Colors.red.shade700;
       default:
         return Colors.transparent;
     }
@@ -30,7 +30,7 @@ extension TileStateExtension on TileState {
       case TileState.one:
         return Colors.blueAccent;
       case TileState.two:
-        return Colors.pinkAccent;
+        return Colors.redAccent;
       default:
         return Colors.transparent;
     }

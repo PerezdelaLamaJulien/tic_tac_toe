@@ -27,8 +27,6 @@ class GameNotifier extends Notifier<GameState> {
     );
   }
 
-  void reset() => state = GameState.initial();
-
   Player? _checkWinner(List<TileState> tileStates) {
     Player? winner;
     final wins = <List<int>, WinningLineState>{
@@ -56,5 +54,13 @@ class GameNotifier extends Notifier<GameState> {
     });
 
     return winner;
+  }
+
+  void startGame(Player firstPlayer) {
+    state = GameState(
+      board: List.filled(9, TileState.empty),
+      currentPlayer: firstPlayer,
+      hasBegun: true,
+    );
   }
 }
