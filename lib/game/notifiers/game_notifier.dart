@@ -21,7 +21,9 @@ class GameNotifier extends Notifier<GameState> {
 
     state = state.copyWith(
       board: newBoard,
-      currentPlayer: state.currentPlayer == Player.one ? Player.two : Player.one,
+      currentPlayer: state.currentPlayer == Player.one
+          ? Player.two
+          : Player.one,
       winner: winner,
       isDraw: isDraw,
     );
@@ -29,7 +31,7 @@ class GameNotifier extends Notifier<GameState> {
     if (winner == null &&
         newBoard.contains(TileState.empty) &&
         state.mode == GameMode.computer) {
-      addComputerMove();
+      await addComputerMove();
     }
   }
 
@@ -44,7 +46,9 @@ class GameNotifier extends Notifier<GameState> {
     final isDraw = !newBoard.contains(TileState.empty) && winner == null;
     state = state.copyWith(
       board: newBoard,
-      currentPlayer: state.currentPlayer == Player.one ? Player.two : Player.one,
+      currentPlayer: state.currentPlayer == Player.one
+          ? Player.two
+          : Player.one,
       winner: winner,
       isDraw: isDraw,
     );
@@ -88,7 +92,7 @@ class GameNotifier extends Notifier<GameState> {
     );
   }
 
-  void startGameAgainstComputer(Player firstPlayer) {
+  Future<void> startGameAgainstComputer(Player firstPlayer) async {
     state = GameState(
       board: List.filled(9, TileState.empty),
       currentPlayer: firstPlayer,
@@ -97,7 +101,7 @@ class GameNotifier extends Notifier<GameState> {
     );
 
     if (firstPlayer == Player.two) {
-      addComputerMove();
+      await addComputerMove();
     }
   }
 }
