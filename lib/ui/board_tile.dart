@@ -5,6 +5,7 @@ import 'package:tic_tac_toe/game/models/winning_line_state.dart';
 class BoardTile extends StatelessWidget {
   final TileState state;
   final VoidCallback onTap;
+  final bool isGoingToDisapparated;
   final bool isHighlighted;
   final bool gameHasBegun;
   final WinningLineState? winningLineState;
@@ -14,7 +15,8 @@ class BoardTile extends StatelessWidget {
     required this.state,
     required this.onTap,
     required this.gameHasBegun,
-    this.isHighlighted = false,
+    required this.isHighlighted,
+    required this.isGoingToDisapparated,
     this.winningLineState,
   });
 
@@ -39,7 +41,9 @@ class BoardTile extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 48,
                   fontWeight: FontWeight.bold,
-                  color: state.iconColor,
+                  color: isGoingToDisapparated
+                      ? state.iconColor.withAlpha(60)
+                      : state.iconColor,
                 ),
               ),
             ),
