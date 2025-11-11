@@ -1,24 +1,47 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'models/game_state.dart';
-import 'models/player.dart';
-import 'models/tile_state.dart';
-import 'models/winning_line_state.dart';
-
-final gameProvider = NotifierProvider<GameNotifier, GameState>(GameNotifier.new,);
+import 'package:tic_tac_toe/game/models/game_state.dart';
+import 'package:tic_tac_toe/game/models/player.dart';
+import 'package:tic_tac_toe/game/models/tile_state.dart';
+import 'package:tic_tac_toe/game/models/winning_line_state.dart';
+import 'package:tic_tac_toe/game/providers/computer_provider.dart';
+import 'package:tic_tac_toe/game/models/game_mode.dart';
 
 class GameNotifier extends Notifier<GameState> {
   @override
   GameState build() => GameState.initial();
 
-  void playMove(int index) {
+  Future<void> addPlayerMove(int index) async {
     if (state.board[index] != TileState.empty || state.winner != null) return;
 
     final newBoard = [...state.board];
-    newBoard[index] = state.currentPlayer == Player.one ? TileState.one : TileState.two;
+    newBoard[index] = state.currentPlayer.ownedTileState;
 
     final winner = _checkWinner(newBoard);
     final isDraw = !newBoard.contains(TileState.empty) && winner == null;
 
+    state = state.copyWith(
+      board: newBoard,
+      currentPlayer: state.currentPlayer == Player.one ? Player.two : Player.one,
+      winner: winner,
+      isDraw: isDraw,
+    );
+
+    if (winner == null &&
+        newBoard.contains(TileState.empty) &&
+        state.mode == GameMode.computer) {
+      addComputerMove();
+    }
+  }
+
+  Future<void> addComputerMove() async {
+    final computer = ref.read(computerProvider);
+    final computerMove = computer.chooseMove(state.board, state.currentPlayer);
+    await Future.delayed(const Duration(milliseconds: 400));
+    final newBoard = [...state.board];
+    newBoard[computerMove] = state.currentPlayer.ownedTileState;
+
+    final winner = _checkWinner(newBoard);
+    final isDraw = !newBoard.contains(TileState.empty) && winner == null;
     state = state.copyWith(
       board: newBoard,
       currentPlayer: state.currentPlayer == Player.one ? Player.two : Player.one,
@@ -56,11 +79,25 @@ class GameNotifier extends Notifier<GameState> {
     return winner;
   }
 
-  void startGame(Player firstPlayer) {
+  void startGameAgainstLocalPlayer(Player firstPlayer) {
     state = GameState(
       board: List.filled(9, TileState.empty),
       currentPlayer: firstPlayer,
       hasBegun: true,
+      mode: GameMode.local,
     );
+  }
+
+  void startGameAgainstComputer(Player firstPlayer) {
+    state = GameState(
+      board: List.filled(9, TileState.empty),
+      currentPlayer: firstPlayer,
+      hasBegun: true,
+      mode: GameMode.computer,
+    );
+
+    if (firstPlayer == Player.two) {
+      addComputerMove();
+    }
   }
 }

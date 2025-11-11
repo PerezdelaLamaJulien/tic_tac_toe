@@ -1,0 +1,2 @@
+
+enum GameMode { local, computer }
