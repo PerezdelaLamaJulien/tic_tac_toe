@@ -107,11 +107,12 @@ flutter run
 | État global | [Riverpod](https://riverpod.dev) |
 | Interface   | Flutter Widgets & Material       |
 | Animation   | Flutter `AnimatedBuilder`        |
-| Test        | `flutter_test`, `mocktail`       |
+| Test        | `flutter_test`, `mockito`       |
 | Typage      | Dart 3.0 (enums enrichis)        |
 
 ### 🔮 Évolutions prévues
 
+- ♾️ Mode endless pour éviter les draws (on fait supprimer les coups au fur et a mesure que la partie avance)
 - 🌐 Mode multijoueur en ligne (Firebase Realtime Database) avec invitation et plus tard matchmaking
 - 🧠 IA “Minimax” avec différents niveaux de difficulté
 - 💾 Sauvegarde des scores et statistiques
