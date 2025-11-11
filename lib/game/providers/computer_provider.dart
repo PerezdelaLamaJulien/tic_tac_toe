@@ -8,7 +8,7 @@ final computerProvider = Provider<Computer>((ref) => Computer());
 
 class Computer {
   int chooseMove(List<TileState> board, Player computerPlayer) {
-    int bestMove = _detectPossibleWins(board, computerPlayer);
+    int bestMove = _detectOptimalMoves(board, computerPlayer);
     if (bestMove != -1) {
       return bestMove;
     } else {
@@ -22,7 +22,7 @@ class Computer {
     }
   }
 
-  int _detectPossibleWins(List<TileState> board, Player computerPlayer) {
+  int _detectOptimalMoves(List<TileState> board, Player computerPlayer) {
     final wins = {
       [0, 1, 2],
       [3, 4, 5],

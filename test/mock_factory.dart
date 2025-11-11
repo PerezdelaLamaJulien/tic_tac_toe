@@ -1,0 +1,91 @@
+import 'package:tic_tac_toe/game/models/game_mode.dart';
+import 'package:tic_tac_toe/game/models/game_state.dart';
+import 'package:tic_tac_toe/game/models/player.dart';
+import 'package:tic_tac_toe/game/models/tile_state.dart';
+import 'package:tic_tac_toe/game/models/winning_line_state.dart';
+
+class MockFactory {
+  GameState drawGameState = GameState(
+    board: [
+      TileState.one,
+      TileState.two,
+      TileState.one,
+      TileState.one,
+      TileState.one,
+      TileState.two,
+      TileState.two,
+      TileState.one,
+      TileState.two,
+    ],
+    currentPlayer: Player.two,
+    mode: GameMode.local,
+    isDraw: true,
+    hasBegun: true,
+    winner: null,
+    winningLineState: null,
+    winningLine: null,
+  );
+
+  GameState oneWonGameState = GameState(
+    board: [
+      TileState.one,
+      TileState.two,
+      TileState.two,
+      TileState.one,
+      TileState.one,
+      TileState.two,
+      TileState.one,
+      TileState.empty,
+      TileState.two,
+    ],
+    currentPlayer: Player.two,
+    mode: GameMode.local,
+    isDraw: false,
+    hasBegun: true,
+    winner: Player.one,
+    winningLineState: WinningLineState.vert,
+    winningLine: [0, 3, 6],
+  );
+
+  GameState twoWonGameState = GameState(
+    board: [
+      TileState.two,
+      TileState.two,
+      TileState.two,
+      TileState.one,
+      TileState.one,
+      TileState.two,
+      TileState.one,
+      TileState.one,
+      TileState.two,
+    ],
+    currentPlayer: Player.one,
+    mode: GameMode.local,
+    isDraw: false,
+    hasBegun: true,
+    winner: Player.two,
+    winningLineState: WinningLineState.hori,
+    winningLine: [0, 1, 2],
+  );
+
+  GameState onGoingGameState = GameState(
+    board: [
+      TileState.empty,
+      TileState.empty,
+      TileState.one,
+      TileState.empty,
+      TileState.empty,
+      TileState.two,
+      TileState.empty,
+      TileState.empty,
+      TileState.empty,
+    ],
+    currentPlayer: Player.one,
+    mode: GameMode.local,
+    isDraw: false,
+    hasBegun: true,
+    winner: null,
+    winningLineState: null,
+    winningLine: null,
+  );
+}
