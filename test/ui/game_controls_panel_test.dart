@@ -20,7 +20,19 @@ void main() {
 
     expect(find.text("Jouer contre un ordinateur"), findsOne);
     expect(find.text("Jouer contre un ami en local"), findsOne);
+    expect(find.text("Endless Mode"), findsOne);
+    expect(find.byType(Switch), findsOne);
+    expect(find.byType(IconButton), findsOne);
     expect(find.text("Rejouer"), findsNothing);
+
+    await tester.tap(find.byType(IconButton));
+    await tester.pumpAndSettle();
+    expect(find.byType(Dialog), findsOne);
+    expect(find.text("OK"), findsNothing);
+    await tester.tap(find.text("OK"));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byType(Switch));
     await tester.tap(find.text("Jouer contre un ordinateur"));
     await tester.pumpAndSettle();
     expect(selectedGameMode, GameMode.computer);

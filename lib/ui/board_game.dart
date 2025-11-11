@@ -26,6 +26,7 @@ class BoardGame extends ConsumerWidget {
             onTap: () => controller.addPlayerMove(index),
             gameHasBegun: game.hasBegun,
             isHighlighted: isHighlighted,
+            isGoingToDisapparated: (game.endlessMode && game.movesHistory.length == 6 && game.movesHistory.first == index),
             winningLineState: game.winningLineState,
           );
         },

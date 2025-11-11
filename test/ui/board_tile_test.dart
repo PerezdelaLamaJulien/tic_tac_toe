@@ -14,6 +14,7 @@ void main() {
           state: TileState.empty,
           onTap: () => tapped = true,
           isHighlighted: false,
+          isGoingToDisapparated: false,
           gameHasBegun: false,
           winningLineState: null,
         ),
@@ -35,6 +36,7 @@ void main() {
           state: TileState.empty,
           onTap: () => tapped = true,
           isHighlighted: false,
+          isGoingToDisapparated: false,
           gameHasBegun: true,
           winningLineState: null,
         ),
@@ -56,6 +58,7 @@ void main() {
           state: TileState.one,
           onTap: () => tapped = true,
           isHighlighted: false,
+          isGoingToDisapparated: true,
           gameHasBegun: true,
           winningLineState: null,
         ),
@@ -70,13 +73,13 @@ void main() {
 
   testWidgets('BoardTile displays 0 and cant be tapped because tile is already filled', (tester) async {
     bool tapped = false;
-
     await tester.pumpWidget(
       MaterialApp(
         home: BoardTile(
           state: TileState.two,
           onTap: () => tapped = true,
           isHighlighted: false,
+          isGoingToDisapparated: false,
           gameHasBegun: true,
           winningLineState: null,
         ),
@@ -96,6 +99,7 @@ void main() {
           state: TileState.two,
           onTap: () => {},
           isHighlighted: true,
+          isGoingToDisapparated: false,
           gameHasBegun: true,
           winningLineState: WinningLineState.hori,
         ),
