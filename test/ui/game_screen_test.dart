@@ -6,6 +6,7 @@ import 'package:tic_tac_toe/ui/coin_flip.dart';
 import 'package:tic_tac_toe/ui/game_screen.dart';
 
 void main() {
+
   testWidgets('Screen is correctly shown', (tester) async {
     await tester.pumpWidget(
       ProviderScope(child: MaterialApp(home: GameScreen())),

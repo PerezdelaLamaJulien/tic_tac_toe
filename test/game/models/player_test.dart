@@ -12,7 +12,7 @@ void main() {
   });
 
   test('player two return good values', () {
-    final player = Player.one;
+    final player = Player.two;
     expect(player.playerName, "Joueur Rouge");
     expect(player.ownedTileState, TileState.two);
     expect(player.opponentTileState, TileState.one);

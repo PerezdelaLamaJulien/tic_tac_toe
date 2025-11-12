@@ -12,6 +12,7 @@ Un jeu de **Tic Tac Toe** moderne développé avec **Flutter** et **Riverpod Not
 - 🧩 **Architecture modulaire** avec `Notifier` (Riverpod 3.x)
 - 🏆 **Détection des lignes gagnantes** avec animation visuelle
 - 🔁 **Bouton Rejouer** pour recommencer instantanément
+- ♾️ **Mode Endless** où les symboles disparaissent au fur et à mesure que la partie pour plus de stratégie
 - 🧪 **Tests unitaires et widgets**
 
 ---
@@ -70,16 +71,24 @@ Une évolution future intégrera l’algorithme **Minimax** pour un niveau “im
 - **Coin Flip** : animation 3D simulant un tirage au sort pour choisir le joueur de départ
 - **Panneau de contrôle** : affiche le joueur actuel et un bouton pour recommencer
 
-L’interface est réactive et adaptée à différentes tailles d’écran (desktop / mobile).
+L’interface est réactive et s'adapte à l'orientation de l'écran.
 
 ---
 
 ## 🧪 Tests
 
-Des tests unitaires et widgets sont en cours d’ajout :
-- `test/game/game_notifier_test.dart` → logique de victoire, égalité, tour du joueur
-- `test/game/computer_provider_test.dart` → choix de coup par l’IA
-- `test/ui/game_screen_test.dart` → interaction complète (partie simulée)
+Des tests unitaires et widgets sont présent pour assurer la qualité du code :
+- `test/game/game_notifier_test.dart`
+- `test/game/computer_provider_test.dart`
+- `test/game/models/game_state_test.dart`
+- `test/game/models/player_test.dart`
+- `test/game/models/tile_state_test.dart`
+- `test/game/models/winning_line_state_test.dart`
+- `test/ui/board_game_test.dart`
+- `test/ui/board_tile_test.dart`
+- `test/ui/coin_flip_test.dart`
+- `test/ui/game_controls_panel_test.dart`
+- `test/ui/game_screen_test.dart`
 
 ### Exécution des tests
 ```bash
@@ -107,7 +116,7 @@ flutter run
 | État global | [Riverpod](https://riverpod.dev) |
 | Interface   | Flutter Widgets & Material       |
 | Animation   | Flutter `AnimatedBuilder`        |
-| Test        | `flutter_test`, `mockito`       |
+| Test        | `flutter_test`, `mockito`        |
 | Typage      | Dart 3.0 (enums enrichis)        |
 
 ### 🔮 Évolutions prévues
@@ -125,7 +134,3 @@ Julien Perez de la Lama
 📧 Contact : perezdelalama.julien@gmail.com
 
 🌐 GitHub : github.com/PerezdelaLamaJulien/
-
-### 📜 Licence
-
-Ce projet est sous licence MIT — libre à vous de l’utiliser et de le modifier.

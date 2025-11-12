@@ -27,15 +27,17 @@ class GameScreen extends ConsumerWidget {
                 children: [
                   Text(game.status, style: const TextStyle(fontSize: 24)),
                   BoardGame(),
-                  GameControlsPanel(
-                      onStartGame:(mode) =>
-                      {
-                        showCoinTossDialog(mode, context, ref)
-                      },
-                      onRestartGame: () =>
-                      {
-                        showCoinTossDialog(null, context, ref)
-                      }
+                  Flexible(
+                    child: GameControlsPanel(
+                        onStartGame:(mode) =>
+                        {
+                          showCoinTossDialog(mode, context, ref)
+                        },
+                        onRestartGame: () =>
+                        {
+                          showCoinTossDialog(null, context, ref)
+                        }
+                    ),
                   )
                 ],
               );
@@ -58,15 +60,17 @@ class GameScreen extends ConsumerWidget {
                           textAlign: TextAlign.center,
                           style: const TextStyle(fontSize: 24),
                         ),
-                        GameControlsPanel(
-                            onStartGame:(mode) =>
-                            {
-                              showCoinTossDialog(mode, context, ref)
-                            },
-                            onRestartGame: () =>
-                            {
-                              showCoinTossDialog(null, context, ref)
-                            }
+                        Flexible(
+                          child: GameControlsPanel(
+                              onStartGame:(mode) =>
+                              {
+                                showCoinTossDialog(mode, context, ref)
+                              },
+                              onRestartGame: () =>
+                              {
+                                showCoinTossDialog(null, context, ref)
+                              }
+                          ),
                         )
                       ],
                     ),

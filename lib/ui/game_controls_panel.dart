@@ -17,46 +17,50 @@ class GameControlsPanel extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final game = ref.watch(gameProvider);
     return Column(
-      children: [
-        Wrap(
-          alignment: WrapAlignment.center,
-          children: [
-            if (game.mode == GameMode.local || !game.hasBegun)
-              ElevatedButton.icon(
-                onPressed: () => {onStartGame(GameMode.computer)},
-                icon: Icon(Icons.play_arrow),
-                label: Text("Jouer contre un ordinateur"),
-              ),
-            if (game.mode == GameMode.computer || !game.hasBegun)
-              ElevatedButton.icon(
-                onPressed: () => {onStartGame(GameMode.local)},
-                icon: Icon(Icons.play_arrow),
-                label: Text("Jouer contre un ami en local"),
-              ),
-            if (game.winner != null || game.isDraw)
-              ElevatedButton.icon(
-                onPressed: () => {onRestartGame()},
-                icon: Icon(Icons.refresh),
-                label: Text("Rejouer"),
-              ),
-          ],
-        ),
+        children: [
+          Wrap(
+            alignment: WrapAlignment.center,
+            children: [
+              if (game.mode == GameMode.local || !game.hasBegun)
+                ElevatedButton.icon(
+                  onPressed: () => {onStartGame(GameMode.computer)},
+                  icon: Icon(Icons.play_arrow),
+                  label: Text("Jouer contre un ordinateur"),
+                ),
+              if (game.mode == GameMode.computer || !game.hasBegun)
+                ElevatedButton.icon(
+                  onPressed: () => {onStartGame(GameMode.local)},
+                  icon: Icon(Icons.play_arrow),
+                  label: Text("Jouer contre un ami en local"),
+                ),
+              if (game.winner != null || game.isDraw)
+                ElevatedButton.icon(
+                  onPressed: () => {onRestartGame()},
+                  icon: Icon(Icons.refresh),
+                  label: Text("Rejouer"),
+                ),
+            ],
+          ),
 
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Endless Mode"),
-            Switch(
-              value: game.endlessMode,
-              onChanged: (newValue) => endlessModeOnChanged(newValue, ref),
+          Flexible(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Endless Mode"),
+                Switch(
+                  value: game.endlessMode,
+                  onChanged: (newValue) => endlessModeOnChanged(newValue, ref),
+                ),
+                Flexible(
+                  child: IconButton(
+                      onPressed: ()=>showEndlessDialog(context),
+                      icon: Icon(Icons.help_outline)
+                  ),
+                )
+              ],
             ),
-            IconButton(
-                onPressed: ()=>showEndlessDialog(context),
-                icon: Icon(Icons.help_outline)
-            )
-          ],
-        ),
-      ],
+          ),
+        ],
     );
   }
 

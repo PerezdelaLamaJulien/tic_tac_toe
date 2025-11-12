@@ -10,9 +10,11 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         child: MaterialApp(
-          home: GameControlsPanel(
-            onStartGame: (mode) => selectedGameMode = mode,
-            onRestartGame: () => {},
+          home: Material(
+            child: GameControlsPanel(
+              onStartGame: (mode) => selectedGameMode = mode,
+              onRestartGame: () => {},
+            ),
           ),
         ),
       ),
@@ -28,7 +30,7 @@ void main() {
     await tester.tap(find.byType(IconButton));
     await tester.pumpAndSettle();
     expect(find.byType(Dialog), findsOne);
-    expect(find.text("OK"), findsNothing);
+    expect(find.text("OK"), findsOne);
     await tester.tap(find.text("OK"));
     await tester.pumpAndSettle();
 
