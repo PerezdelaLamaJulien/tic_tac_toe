@@ -1,9 +1,16 @@
-import 'package:tic_tac_toe/game/models/game_mode.dart';
-import 'package:tic_tac_toe/game/models/game_state.dart';
-import 'package:tic_tac_toe/game/models/player.dart';
-import 'package:tic_tac_toe/game/models/tile_state.dart';
-import 'package:tic_tac_toe/game/models/winning_line_state.dart';
+import 'package:mockito/annotations.dart';
+import 'package:tic_tac_toe/data/models/game_mode.dart';
+import 'package:tic_tac_toe/data/models/game_state.dart';
+import 'package:tic_tac_toe/data/models/player.dart';
+import 'package:tic_tac_toe/data/models/tile_state.dart';
+import 'package:tic_tac_toe/data/models/winning_line_state.dart';
+import 'package:tic_tac_toe/data/repositories/computer_repository.dart';
+import 'package:tic_tac_toe/data/repositories/stats_repository.dart';
 
+@GenerateNiceMocks( [
+  MockSpec<ComputerRepository>(as: #MockComputerRepository),
+  MockSpec<StatsRepository>(as: #MockStatsRepository),
+])
 class MockFactory {
   GameState drawGameState = GameState(
     board: [
