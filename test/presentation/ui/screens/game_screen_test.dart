@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:tic_tac_toe/data/models/game_stats.dart';
 import 'package:tic_tac_toe/data/providers/stats_repository_provider.dart';
+import 'package:tic_tac_toe/presentation/l10n/app_localizations.dart';
 import 'package:tic_tac_toe/presentation/providers/stats_provider.dart';
 import 'package:tic_tac_toe/presentation/ui/screens/game_screen.dart';
 import 'package:tic_tac_toe/presentation/ui/screens/stats_screen.dart';
@@ -12,11 +13,17 @@ import 'package:tic_tac_toe/presentation/ui/widgets/coin_flip.dart';
 
 import '../../../mock_factory.mocks.dart';
 
-
 void main() {
   testWidgets('Game Screen is correctly shown', (tester) async {
     await tester.pumpWidget(
-      ProviderScope(child: MaterialApp(home: GameScreen())),
+      ProviderScope(
+        child: MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: Locale('fr'),
+          home: GameScreen(),
+        ),
+      ),
     );
 
     expect(find.text("Tic Tac Toe"), findsOne);
@@ -42,7 +49,12 @@ void main() {
         overrides: [
           statsRepositoryProvider.overrideWith((ref) => mockStatsRepository),
         ],
-        child: MaterialApp(home: GameScreen()),
+        child: MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: Locale('fr'),
+          home: GameScreen(),
+        ),
       ),
     );
 

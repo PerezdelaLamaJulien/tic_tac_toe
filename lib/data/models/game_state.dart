@@ -2,6 +2,7 @@ import 'package:tic_tac_toe/data/models/game_mode.dart';
 import 'package:tic_tac_toe/data/models/player.dart';
 import 'package:tic_tac_toe/data/models/tile_state.dart';
 import 'package:tic_tac_toe/data/models/winning_line_state.dart';
+import 'package:tic_tac_toe/presentation/l10n/app_localizations.dart';
 
 class GameState {
   final List<TileState> board;
@@ -65,16 +66,20 @@ class GameState {
 }
 
 extension GameExtension on GameState {
-  String get status {
+  String status(AppLocalizations localization) {
     if (hasBegun) {
       if (winner != null) {
-        return "Le ${winner!.playerName} a gagné 🎉";
+        return localization.gameExtensionStatusWinner(
+          winner!.playerName(localization),
+        );
       } else if (isDraw) {
-        return "Match nul 😐";
+        return localization.gameExtensionStatusDraw;
       } else {
-        return "Tour de ${currentPlayer.playerName}";
+        return localization.gameExtensionStatusTurnPlayer(
+          currentPlayer.playerName(localization),
+        );
       }
     }
-    return "Qui seras le meilleur ?";
+    return localization.gameExtensionStatusDefault;
   }
 }

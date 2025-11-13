@@ -1,0 +1,62 @@
+{
+  "appTitle": "Tic Tac Toe",
+  "statsScreenTitle": "Statistics",
+  "refreshStatsDialogTooltip": "Reset statistics",
+  "refreshStatsDialogTitle": "Reset?",
+  "refreshStatsDialogText": "Are you sure you want to reset all your statistics?",
+  "cancelActionLabel": "Cancel",
+  "confirmActionLabel": "Confirm",
+  "addDemoStatsDialogTooltip": "Add demo data",
+  "addDemoStatsDialogTitle": "Add demo data?",
+  "addDemoStatsDialogText": "Do you want to add fake demo data? All current statistics will be lost.",
+  "loadingErrorText": "Loading error: {err}",
+  "@loadingErrorText": {
+    "placeholders": {
+      "err": {"type": "String"}
+    }
+  },
+  "statsScreenPerformancesHeaderLabel": "Your performances",
+  "statsScreenTotalGamesRowLabel": "Games played",
+  "statsScreenTotalGamesComputerRowLabel": "Games played against the computer",
+  "statsScreenTotalGamesLocalRowLabel": "Games played locally",
+  "statsScreenTotalGamesEndlessRowLabel": "Games played in Endless mode",
+  "statsScreenVictoryPlayerOneRowLabel": "Blue Player wins locally",
+  "statsScreenVictoryPlayerTwoRowLabel": "Red Player wins locally",
+  "statsScreenVictoryVersusComputerRowLabel": "Player wins against the computer",
+  "statsScreenTotalDrawsRowLabel": "Draws",
+  "statsScreenCurrentStreakRowLabel": "Current streak",
+  "statsScreenBestStreakRowLabel": "Best streak",
+  "statsScreenMotivationMessageBestStreakAboveFiveLabel": "🔥 Legendary streak!",
+  "statsScreenMotivationMessageCurrentStreakAboveThreeLabel": "💪 Keep up the momentum!",
+  "statsScreenMotivationStartFirstGameLabel": "🕹️ Start your first game!",
+  "statsScreenMotivationDefaultLabel": "Good luck for the next game!",
+  "coinFlipStartButtonLabel": "Flip the coin",
+  "coinFlipResultLabel": "${playerName} starts!",
+  "@coinFlipResultLabel": {
+    "placeholders": {
+      "playerName": {"type": "String"}
+    }
+  },
+  "gameControlsStartComputerActionLabel": "Play against the computer",
+  "gameControlsStartLocalActionLabel": "Play against a friend locally",
+  "gameControlsRestartActionLabel": "Play again",
+  "gameControlsEndlessModeTitle": "Endless Mode",
+  "gameControlsEndlessModeDialogText": "Symbols gradually disappear as the game progresses. No draws are possible — the game only ends when a player aligns three symbols.",
+  "okActionLabel": "OK",
+  "gameExtensionStatusWinner": "${playerName} won 🎉",
+  "@gameExtensionStatusWinner": {
+    "placeholders": {
+      "playerName": {"type": "String"}
+    }
+  },
+  "gameExtensionStatusDraw": "Draw 😐",
+  "gameExtensionStatusDefault": "Who will be the best?",
+  "gameExtensionStatusTurnPlayer": "${playerName}'s turn",
+  "@gameExtensionStatusTurnPlayer": {
+    "placeholders": {
+      "playerName": {"type": "String"}
+    }
+  },
+  "playerOneExtensionName": "Blue Player",
+  "playerTwoExtensionName": "Red Player"
+}

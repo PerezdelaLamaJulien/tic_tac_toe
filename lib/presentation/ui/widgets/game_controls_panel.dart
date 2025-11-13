@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tic_tac_toe/data/models/game_mode.dart';
+import 'package:tic_tac_toe/presentation/l10n/app_localizations.dart';
 import 'package:tic_tac_toe/presentation/providers/game_provider.dart';
 
 class GameControlsPanel extends ConsumerWidget {
@@ -15,52 +16,53 @@ class GameControlsPanel extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final localization = AppLocalizations.of(context)!;
     final game = ref.watch(gameProvider);
     return Column(
-        children: [
-          Wrap(
-            alignment: WrapAlignment.center,
+      children: [
+        Wrap(
+          alignment: WrapAlignment.center,
+          children: [
+            if (game.mode == GameMode.local || !game.hasBegun)
+              ElevatedButton.icon(
+                onPressed: () => {onStartGame(GameMode.computer)},
+                icon: Icon(Icons.play_arrow),
+                label: Text(localization.gameControlsStartComputerActionLabel),
+              ),
+            if (game.mode == GameMode.computer || !game.hasBegun)
+              ElevatedButton.icon(
+                onPressed: () => {onStartGame(GameMode.local)},
+                icon: Icon(Icons.play_arrow),
+                label: Text(localization.gameControlsStartLocalActionLabel),
+              ),
+            if (game.winner != null || game.isDraw)
+              ElevatedButton.icon(
+                onPressed: () => {onRestartGame()},
+                icon: Icon(Icons.refresh),
+                label: Text(localization.gameControlsRestartActionLabel),
+              ),
+          ],
+        ),
+
+        Flexible(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              if (game.mode == GameMode.local || !game.hasBegun)
-                ElevatedButton.icon(
-                  onPressed: () => {onStartGame(GameMode.computer)},
-                  icon: Icon(Icons.play_arrow),
-                  label: Text("Jouer contre un ordinateur"),
+              Text(localization.gameControlsEndlessModeTitle),
+              Switch(
+                value: game.endlessMode,
+                onChanged: (newValue) => endlessModeOnChanged(newValue, ref),
+              ),
+              Flexible(
+                child: IconButton(
+                  onPressed: () => showEndlessDialog(context),
+                  icon: Icon(Icons.help_outline),
                 ),
-              if (game.mode == GameMode.computer || !game.hasBegun)
-                ElevatedButton.icon(
-                  onPressed: () => {onStartGame(GameMode.local)},
-                  icon: Icon(Icons.play_arrow),
-                  label: Text("Jouer contre un ami en local"),
-                ),
-              if (game.winner != null || game.isDraw)
-                ElevatedButton.icon(
-                  onPressed: () => {onRestartGame()},
-                  icon: Icon(Icons.refresh),
-                  label: Text("Rejouer"),
-                ),
+              ),
             ],
           ),
-
-          Flexible(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Endless Mode"),
-                Switch(
-                  value: game.endlessMode,
-                  onChanged: (newValue) => endlessModeOnChanged(newValue, ref),
-                ),
-                Flexible(
-                  child: IconButton(
-                      onPressed: ()=>showEndlessDialog(context),
-                      icon: Icon(Icons.help_outline)
-                  ),
-                )
-              ],
-            ),
-          ),
-        ],
+        ),
+      ],
     );
   }
 
@@ -75,6 +77,7 @@ class GameControlsPanel extends ConsumerWidget {
   }
 
   Future<void> showEndlessDialog(BuildContext context) async {
+    final localization = AppLocalizations.of(context)!;
     showDialog(
       context: context,
       builder: (context) => Dialog(
@@ -88,16 +91,19 @@ class GameControlsPanel extends ConsumerWidget {
             spacing: 10,
             children: [
               Text(
-                  "Mode Endless ♾️",
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                localization.gameControlsEndlessModeTitle,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               Text(
-                  "Les symboles disparaissent petit à petit que la partie avance. Pas d'égalité possible, la partie ne s'arrête que quand un joueur aura aligné 3 symboles.",
-              textAlign: TextAlign.center,
+                localization.gameControlsEndlessModeDialogText,
+                textAlign: TextAlign.center,
               ),
               ElevatedButton(
-                onPressed: ()=> Navigator.pop(context),
-                child: Text("OK"),
+                onPressed: () => Navigator.pop(context),
+                child: Text(localization.okActionLabel),
               ),
             ],
           ),

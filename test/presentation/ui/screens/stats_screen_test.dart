@@ -4,10 +4,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:tic_tac_toe/data/models/game_stats.dart';
 import 'package:tic_tac_toe/data/providers/stats_repository_provider.dart';
+import 'package:tic_tac_toe/presentation/l10n/app_localizations.dart';
 import 'package:tic_tac_toe/presentation/ui/screens/stats_screen.dart';
 
 import '../../../mock_factory.mocks.dart';
-
 
 void main() {
   testWidgets('Stats Screen is correctly shown', (tester) async {
@@ -22,7 +22,12 @@ void main() {
         overrides: [
           statsRepositoryProvider.overrideWith((ref) => mockStatsRepository),
         ],
-        child: MaterialApp(home: StatsScreen()),
+        child: MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: Locale('fr'),
+          home: StatsScreen(),
+        ),
       ),
     );
 
@@ -87,4 +92,3 @@ void main() {
     );
   });
 }
-

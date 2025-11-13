@@ -6,10 +6,12 @@ import 'package:tic_tac_toe/data/models/tile_state.dart';
 import 'package:tic_tac_toe/data/models/winning_line_state.dart';
 import 'package:tic_tac_toe/data/repositories/computer_repository.dart';
 import 'package:tic_tac_toe/data/repositories/stats_repository.dart';
+import 'package:tic_tac_toe/presentation/l10n/app_localizations.dart';
 
 @GenerateNiceMocks( [
   MockSpec<ComputerRepository>(as: #MockComputerRepository),
   MockSpec<StatsRepository>(as: #MockStatsRepository),
+  MockSpec<AppLocalizations>(as: #MockAppLocalizations),
 ])
 class MockFactory {
   GameState drawGameState = GameState(
