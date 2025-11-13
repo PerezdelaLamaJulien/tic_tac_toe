@@ -3,10 +3,14 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:async' as _i6;
+
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:tic_tac_toe/game/models/player.dart' as _i4;
 import 'package:tic_tac_toe/game/models/tile_state.dart' as _i3;
 import 'package:tic_tac_toe/game/providers/computer_provider.dart' as _i2;
+import 'package:tic_tac_toe/game/providers/stats_repository_provider.dart'
+    as _i5;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -26,15 +30,39 @@ import 'package:tic_tac_toe/game/providers/computer_provider.dart' as _i2;
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockComputer extends _i1.Mock implements _i2.Computer {
-  MockComputer() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   int chooseMove(List<_i3.TileState>? board, _i4.Player? computerPlayer) =>
       (super.noSuchMethod(
             Invocation.method(#chooseMove, [board, computerPlayer]),
             returnValue: 0,
+            returnValueForMissingStub: 0,
           )
           as int);
+}
+
+/// A class which mocks [StatsRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockStatsRepository extends _i1.Mock implements _i5.StatsRepository {
+  @override
+  _i6.Future<Map<String, dynamic>> loadStats() =>
+      (super.noSuchMethod(
+            Invocation.method(#loadStats, []),
+            returnValue: _i6.Future<Map<String, dynamic>>.value(
+              <String, dynamic>{},
+            ),
+            returnValueForMissingStub: _i6.Future<Map<String, dynamic>>.value(
+              <String, dynamic>{},
+            ),
+          )
+          as _i6.Future<Map<String, dynamic>>);
+
+  @override
+  _i6.Future<void> saveStats(Map<String, dynamic>? stats) =>
+      (super.noSuchMethod(
+            Invocation.method(#saveStats, [stats]),
+            returnValue: _i6.Future<void>.value(),
+            returnValueForMissingStub: _i6.Future<void>.value(),
+          )
+          as _i6.Future<void>);
 }

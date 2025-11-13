@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
+import 'package:tic_tac_toe/game/models/game_stats.dart';
+import 'package:tic_tac_toe/game/notifiers/stats_notifier.dart';
+import 'package:tic_tac_toe/game/providers/stats_repository_provider.dart';
 import 'package:tic_tac_toe/ui/board_game.dart';
 import 'package:tic_tac_toe/ui/coin_flip.dart';
 import 'package:tic_tac_toe/ui/game_screen.dart';
+import 'package:tic_tac_toe/ui/stats_screen.dart';
+
+import '../game/notifiers/game_notifier_test.mocks.dart';
 
 void main() {
-
-  testWidgets('Screen is correctly shown', (tester) async {
+  testWidgets('Game Screen is correctly shown', (tester) async {
     await tester.pumpWidget(
       ProviderScope(child: MaterialApp(home: GameScreen())),
     );
@@ -22,5 +28,27 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.byType(Dialog), findsOne);
     expect(find.byType(CoinFlip), findsOne);
+  });
+
+  testWidgets('Can navigate to StatsScreen', (tester) async {
+    final mockStatsRepository = MockStatsRepository();
+    when(
+      mockStatsRepository.loadStats(),
+    ).thenAnswer((_) async => GameStats.initial().toJson());
+
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          statsRepositoryProvider.overrideWith((ref) => mockStatsRepository),
+        ],
+        child: MaterialApp(home: GameScreen()),
+      ),
+    );
+
+    expect(find.byIcon(Icons.query_stats), findsOne);
+    await tester.tap(find.byIcon(Icons.query_stats));
+    await tester.container().read(statsNotifierProvider.future);
+    await tester.pumpAndSettle();
+    expect(find.byType(StatsScreen), findsOne);
   });
 }

@@ -4,6 +4,7 @@ import 'package:tic_tac_toe/game/models/game_state.dart';
 import 'package:tic_tac_toe/game/models/player.dart';
 import 'package:tic_tac_toe/game/models/tile_state.dart';
 import 'package:tic_tac_toe/game/models/winning_line_state.dart';
+import 'package:tic_tac_toe/game/notifiers/stats_notifier.dart';
 import 'package:tic_tac_toe/game/providers/computer_provider.dart';
 
 class GameNotifier extends Notifier<GameState> {
@@ -23,6 +24,9 @@ class GameNotifier extends Notifier<GameState> {
 
     final winner = _checkWinner(newBoard);
     final isDraw = !newBoard.contains(TileState.empty) && winner == null;
+    if (winner != null || isDraw) {
+      _updateStats();
+    }
 
     state = state.copyWith(
       board: newBoard,
@@ -56,6 +60,10 @@ class GameNotifier extends Notifier<GameState> {
 
     final winner = _checkWinner(newBoard);
     final isDraw = !newBoard.contains(TileState.empty) && winner == null;
+    if (winner != null || isDraw) {
+      _updateStats();
+    }
+
     state = state.copyWith(
       board: newBoard,
       movesHistory: moves,
@@ -129,5 +137,13 @@ class GameNotifier extends Notifier<GameState> {
 
     return (state.board.contains(TileState.one) ||
         state.board.contains(TileState.two));
+  }
+
+  Future<void> _updateStats() async {
+    ref.read(statsNotifierProvider.notifier).updateAfterGame(
+      winner: state.winner,
+      mode: state.mode,
+      endlessEnabled: state.endlessMode,
+    );
   }
 }

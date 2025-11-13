@@ -5,6 +5,8 @@ import 'package:tic_tac_toe/game/models/game_state.dart';
 import 'package:tic_tac_toe/game/providers/game_provider.dart';
 import 'package:tic_tac_toe/ui/coin_flip.dart';
 import 'package:tic_tac_toe/ui/game_controls_panel.dart';
+import 'package:tic_tac_toe/ui/stats_screen.dart';
+
 import 'board_game.dart';
 
 class GameScreen extends ConsumerWidget {
@@ -15,7 +17,21 @@ class GameScreen extends ConsumerWidget {
     final game = ref.watch(gameProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Tic Tac Toe'), centerTitle: true),
+      appBar: AppBar(
+        title: const Text('Tic Tac Toe'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute<void>(builder: (context) => StatsScreen()),
+              );
+            },
+            icon: Icon(Icons.query_stats),
+          ),
+        ],
+        centerTitle: true,
+      ), // actions
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: OrientationBuilder(
@@ -29,25 +45,21 @@ class GameScreen extends ConsumerWidget {
                   BoardGame(),
                   Flexible(
                     child: GameControlsPanel(
-                        onStartGame:(mode) =>
-                        {
-                          showCoinTossDialog(mode, context, ref)
-                        },
-                        onRestartGame: () =>
-                        {
-                          showCoinTossDialog(null, context, ref)
-                        }
+                      onStartGame: (mode) => {
+                        showCoinTossDialog(mode, context, ref),
+                      },
+                      onRestartGame: () => {
+                        showCoinTossDialog(null, context, ref),
+                      },
                     ),
-                  )
+                  ),
                 ],
               );
             } else {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Flexible(
-                    child: BoardGame(),
-                  ),
+                  Flexible(child: BoardGame()),
                   SizedBox(
                     width: 250,
                     child: Column(
@@ -62,16 +74,14 @@ class GameScreen extends ConsumerWidget {
                         ),
                         Flexible(
                           child: GameControlsPanel(
-                              onStartGame:(mode) =>
-                              {
-                                showCoinTossDialog(mode, context, ref)
-                              },
-                              onRestartGame: () =>
-                              {
-                                showCoinTossDialog(null, context, ref)
-                              }
+                            onStartGame: (mode) => {
+                              showCoinTossDialog(mode, context, ref),
+                            },
+                            onRestartGame: () => {
+                              showCoinTossDialog(null, context, ref),
+                            },
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -85,10 +95,10 @@ class GameScreen extends ConsumerWidget {
   }
 
   Future<void> showCoinTossDialog(
-      GameMode? mode,
-      BuildContext context,
-      WidgetRef ref,
-      ) async {
+    GameMode? mode,
+    BuildContext context,
+    WidgetRef ref,
+  ) async {
     mode ??= ref.read(gameProvider).mode;
     showDialog(
       context: context,
@@ -99,11 +109,15 @@ class GameScreen extends ConsumerWidget {
           padding: const EdgeInsets.all(24),
           child: CoinFlip(
             onResult: (player) {
-              switch(mode!){
+              switch (mode!) {
                 case GameMode.local:
-                  ref.read(gameProvider.notifier).startGameAgainstLocalPlayer(player);
+                  ref
+                      .read(gameProvider.notifier)
+                      .startGameAgainstLocalPlayer(player);
                 case GameMode.computer:
-                ref.read(gameProvider.notifier).startGameAgainstComputer(player);
+                  ref
+                      .read(gameProvider.notifier)
+                      .startGameAgainstComputer(player);
               }
               Navigator.pop(context);
             },

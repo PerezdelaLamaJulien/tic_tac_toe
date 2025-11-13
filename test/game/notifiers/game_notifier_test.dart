@@ -3,14 +3,20 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:tic_tac_toe/game/models/game_mode.dart';
+import 'package:tic_tac_toe/game/models/game_stats.dart';
 import 'package:tic_tac_toe/game/models/player.dart';
 import 'package:tic_tac_toe/game/models/tile_state.dart';
+import 'package:tic_tac_toe/game/notifiers/stats_notifier.dart';
 import 'package:tic_tac_toe/game/providers/computer_provider.dart';
 import 'package:tic_tac_toe/game/providers/game_provider.dart';
+import 'package:tic_tac_toe/game/providers/stats_repository_provider.dart';
 
 import 'game_notifier_test.mocks.dart';
 
-@GenerateMocks([], customMocks: [MockSpec<Computer>(as: #MockComputer)])
+@GenerateNiceMocks( [
+  MockSpec<Computer>(as: #MockComputer),
+  MockSpec<StatsRepository>(as: #MockStatsRepository),
+])
 void main() {
   test('initial state is correct', () {
     final container = ProviderContainer.test();
@@ -43,18 +49,27 @@ void main() {
     expect(stateAfter.board, stateBefore.board);
   });
 
-  test('detect victory in row', () {
-    final container = ProviderContainer.test();
+  test('detect victory in row', () async {
+    final mockStatsRepository = MockStatsRepository();
+    when(mockStatsRepository.loadStats())
+        .thenAnswer((_) async => GameStats.initial().toJson());
+
+    final container = ProviderContainer.test(
+      overrides: [statsRepositoryProvider.overrideWith((ref) =>mockStatsRepository)],
+    );
 
     final notifier = container.read(gameProvider.notifier);
-    notifier.addPlayerMove(0); // X
-    notifier.addPlayerMove(3); // O
-    notifier.addPlayerMove(1); // X
-    notifier.addPlayerMove(4); // O
-    notifier.addPlayerMove(2); // X → win
+    await container.read(statsNotifierProvider.future);
+    notifier.startGameAgainstLocalPlayer(Player.one); // X
+    await notifier.addPlayerMove(0); // X
+    await notifier.addPlayerMove(3); // O
+    await notifier.addPlayerMove(1); // X
+    await notifier.addPlayerMove(4); // O
+    await notifier.addPlayerMove(2); // X → win
     final state = container.read(gameProvider);
     expect(state.winner, Player.one);
     expect(state.winningLine, [0, 1, 2]);
+    verify(mockStatsRepository.saveStats(any)).called(1);
   });
 
   test('start new game after win', () {
@@ -91,8 +106,7 @@ void main() {
       var state = container.read(gameProvider);
       expect(container.read(gameProvider).board.contains(TileState.two), true);
       expect(state.mode, GameMode.computer);
-    },
-  );
+    },);
 
   test('addPlayerMove when endless is on and verify moves get removed', () {
     final container = ProviderContainer.test();
@@ -186,6 +200,5 @@ void main() {
       var state = container.read(gameProvider);
       expect(state.board[0], TileState.empty);
       expect(state.movesHistory.length, 6);
-    },
-  );
+    },);
 }
