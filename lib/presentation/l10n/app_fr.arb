@@ -1,0 +1,62 @@
+{
+  "appTitle": "Tic Tac Toe",
+  "statsScreenTitle": "Statistiques",
+  "refreshStatsDialogTooltip": "Réinitialiser les statistiques",
+  "refreshStatsDialogTitle": "Réinitialiser ?",
+  "refreshStatsDialogText": "Voulez-vous vraiment remettre toutes les statistiques à zéro ?",
+  "cancelActionLabel": "Annuler",
+  "confirmActionLabel": "Confirmer",
+  "addDemoStatsDialogTooltip": "Ajouter les données de demo",
+  "addDemoStatsDialogTitle": "Ajouter les données de demo ?",
+  "addDemoStatsDialogText": "Voulez-vous rajouter des fausses données de démo? Vous allez perdre toutes les statistiques actuelles",
+  "loadingErrorText": "Erreur de chargement : {err}",
+  "@loadingErrorText": {
+    "placeholders": {
+      "err": {"type": "String"}
+    }
+  },
+  "statsScreenPerformancesHeaderLabel": "Vos performances",
+  "statsScreenTotalGamesRowLabel": "Parties jouées",
+  "statsScreenTotalGamesComputerRowLabel": "Parties jouées contre l'ordinateur",
+  "statsScreenTotalGamesLocalRowLabel": "Parties jouées en local",
+  "statsScreenTotalGamesEndlessRowLabel": "Parties jouées avec le mode Endless",
+  "statsScreenVictoryPlayerOneRowLabel": "Victoires Joueur Bleu en local",
+  "statsScreenVictoryPlayerTwoRowLabel": "Victoires Joueur Rouge en local",
+  "statsScreenVictoryVersusComputerRowLabel": "Victoires du Joueur contre l'ordinateur",
+  "statsScreenTotalDrawsRowLabel": "Matchs nuls",
+  "statsScreenCurrentStreakRowLabel": "Série actuelle",
+  "statsScreenBestStreakRowLabel": "Meilleure série",
+  "statsScreenMotivationMessageBestStreakAboveFiveLabel": "🔥 Série légendaire !",
+  "statsScreenMotivationMessageCurrentStreakAboveThreeLabel": "💪 Continue sur ta lancée !",
+  "statsScreenMotivationStartFirstGameLabel": "️🕹️ Commence ta première partie !",
+  "statsScreenMotivationDefaultLabel": "️Bonne chance pour la prochaine partie !",
+  "coinFlipStartButtonLabel": "️Lancer la pièce",
+  "coinFlipResultLabel": "Le {playerName} commence !",
+  "@coinFlipResultLabel": {
+    "placeholders": {
+      "playerName": {"type": "String"}
+    }
+  },
+  "gameControlsStartComputerActionLabel": "Jouer contre un ordinateur",
+  "gameControlsStartLocalActionLabel": "Jouer contre un ami en local",
+  "gameControlsRestartActionLabel": "Rejouer",
+  "gameControlsEndlessModeTitle": "Endless Mode",
+  "gameControlsEndlessModeDialogText": "Les symboles disparaissent petit à petit que la partie avance. Pas d'égalité possible, la partie ne s'arrête que quand un joueur aura aligné 3 symboles.",
+  "okActionLabel": "OK",
+  "gameExtensionStatusWinner": "Le {playerName} a gagné 🎉",
+  "@gameExtensionStatusWinner": {
+    "placeholders": {
+      "playerName": {"type": "String"}
+    }
+  },
+  "gameExtensionStatusDraw": "Match nul 😐",
+  "gameExtensionStatusDefault": "Qui seras le meilleur ?",
+  "gameExtensionStatusTurnPlayer": "Tour de {playerName}",
+  "@gameExtensionStatusTurnPlayer": {
+    "placeholders": {
+      "playerName": {"type": "String"}
+    }
+  },
+  "playerOneExtensionName": "Joueur Bleu",
+  "playerTwoExtensionName": "Joueur Rouge"
+}

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tic_tac_toe/data/models/game_mode.dart';
 import 'package:tic_tac_toe/data/models/game_state.dart';
+import 'package:tic_tac_toe/presentation/l10n/app_localizations.dart';
 import 'package:tic_tac_toe/presentation/providers/game_provider.dart';
 import 'package:tic_tac_toe/presentation/ui/screens/stats_screen.dart';
 import 'package:tic_tac_toe/presentation/ui/widgets/coin_flip.dart';
@@ -15,10 +16,11 @@ class GameScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final game = ref.watch(gameProvider);
+    final localization = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tic Tac Toe'),
+        title: Text(localization.appTitle),
         actions: [
           IconButton(
             onPressed: () {
@@ -41,7 +43,7 @@ class GameScreen extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 spacing: 20,
                 children: [
-                  Text(game.status, style: const TextStyle(fontSize: 24)),
+                  Text(game.status(localization), style: const TextStyle(fontSize: 24)),
                   BoardGame(),
                   Flexible(
                     child: GameControlsPanel(
@@ -68,7 +70,7 @@ class GameScreen extends ConsumerWidget {
                       spacing: 20,
                       children: [
                         Text(
-                          game.status,
+                          game.status(localization),
                           textAlign: TextAlign.center,
                           style: const TextStyle(fontSize: 24),
                         ),

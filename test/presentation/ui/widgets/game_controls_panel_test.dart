@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tic_tac_toe/data/models/game_mode.dart';
+import 'package:tic_tac_toe/presentation/l10n/app_localizations.dart';
 import 'package:tic_tac_toe/presentation/ui/widgets/game_controls_panel.dart';
 
 void main() {
@@ -10,6 +11,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         child: MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: Locale('fr'),
           home: Material(
             child: GameControlsPanel(
               onStartGame: (mode) => selectedGameMode = mode,

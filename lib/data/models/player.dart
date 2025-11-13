@@ -1,14 +1,15 @@
 import 'package:tic_tac_toe/data/models/tile_state.dart';
+import 'package:tic_tac_toe/presentation/l10n/app_localizations.dart';
 
 enum Player { one, two }
 
 extension PlayerExtension on Player {
-  String get playerName {
+  String playerName(AppLocalizations localization) {
     switch (this) {
       case Player.one:
-        return 'Joueur Bleu';
+        return localization.playerOneExtensionName;
       case Player.two:
-        return 'Joueur Rouge';
+        return localization.playerTwoExtensionName;
     }
   }
 

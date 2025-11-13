@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:tic_tac_toe/presentation/l10n/app_localizations.dart';
 import 'package:tic_tac_toe/data/models/player.dart';
 
 class CoinFlip extends StatefulWidget {
@@ -49,6 +50,7 @@ class _CoinFlipState extends State<CoinFlip>
 
   @override
   Widget build(BuildContext context) {
+    final localization = AppLocalizations.of(context)!;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -91,13 +93,13 @@ class _CoinFlipState extends State<CoinFlip>
         const SizedBox(height: 20),
         ElevatedButton(
           onPressed: flipCoin,
-          child: Text(isFlipping ? '...' : 'Lancer la pièce'),
+          child: Text(isFlipping ? '...' : localization.coinFlipStartButtonLabel),
         ),
         if (side != null)
           Padding(
             padding: const EdgeInsets.only(top: 8),
             child: Text(
-              'Le ${side!.playerName} commence !',
+              localization.coinFlipResultLabel(side!.playerName(localization)),
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),

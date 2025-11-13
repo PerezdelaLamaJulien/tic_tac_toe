@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tic_tac_toe/data/models/player.dart';
+import 'package:tic_tac_toe/presentation/l10n/app_localizations.dart';
 import 'package:tic_tac_toe/presentation/ui/widgets/coin_flip.dart';
 
 void main() {
   testWidgets('Coin Flip show and interact correctly', (tester) async {
     late Player result;
     await tester.pumpWidget(
-      MaterialApp(home: CoinFlip(onResult: (winner) => result = winner)),
+      MaterialApp(
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        locale: Locale('fr'),
+        home: CoinFlip(onResult: (winner) => result = winner),
+      ),
     );
     expect(find.byType(Transform), findsOne);
     expect(find.byType(ElevatedButton), findsOne);

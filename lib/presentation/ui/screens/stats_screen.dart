@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tic_tac_toe/data/models/game_stats.dart';
+import 'package:tic_tac_toe/presentation/l10n/app_localizations.dart';
 import 'package:tic_tac_toe/presentation/providers/stats_provider.dart';
 
 class StatsScreen extends ConsumerWidget {
@@ -10,30 +11,37 @@ class StatsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncStats = ref.watch(statsNotifierProvider);
     final statsNotifier = ref.read(statsNotifierProvider.notifier);
+    final localization = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Statistiques'),
+        title: Text(localization.statsScreenTitle),
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
-            tooltip: 'Réinitialiser les statistiques',
+            tooltip: localization.refreshStatsDialogTooltip,
             onPressed: () async {
               final confirm = await showDialog<bool>(
                 context: context,
                 builder: (_) => AlertDialog(
-                  title: const Text('Réinitialiser ?'),
-                  content: const Text(
-                    'Voulez-vous vraiment remettre toutes les statistiques à zéro ?',
+                  title: Text(
+                    localization.refreshStatsDialogTitle,
+                  ),
+                  content: Text(
+                    localization.refreshStatsDialogText,
                   ),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(context, false),
-                      child: const Text('Annuler'),
+                      child: Text(
+                        localization.cancelActionLabel,
+                      ),
                     ),
                     ElevatedButton(
                       onPressed: () => Navigator.pop(context, true),
-                      child: const Text('Confirmer'),
+                      child: Text(
+                        localization.confirmActionLabel,
+                      ),
                     ),
                   ],
                 ),
@@ -45,23 +53,29 @@ class StatsScreen extends ConsumerWidget {
           ),
           IconButton(
             icon: const Icon(Icons.add_chart),
-            tooltip: 'Ajouter les données de demo',
+            tooltip: localization.addDemoStatsDialogTooltip,
             onPressed: () async {
               final confirm = await showDialog<bool>(
                 context: context,
                 builder: (_) => AlertDialog(
-                  title: const Text('Ajouter les données de demo ?'),
-                  content: const Text(
-                    'Voulez-vous rajouter des fausses données de démo? Vous allez perdre toutes les statistiques actuelles',
+                  title: Text(
+                    localization.addDemoStatsDialogTitle,
+                  ),
+                  content: Text(
+                    localization.addDemoStatsDialogText,
                   ),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(context, false),
-                      child: const Text('Annuler'),
+                      child: Text(
+                        localization.cancelActionLabel,
+                      ),
                     ),
                     ElevatedButton(
                       onPressed: () => Navigator.pop(context, true),
-                      child: const Text('Confirmer'),
+                      child: Text(
+                        localization.confirmActionLabel,
+                      ),
                     ),
                   ],
                 ),
@@ -75,43 +89,67 @@ class StatsScreen extends ConsumerWidget {
       ),
       body: asyncStats.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (err, stack) =>
-            Center(child: Text('Erreur de chargement : $err')),
+        error: (err, stack) => Center(
+          child: Text(
+            localization.loadingErrorText(err.toString()),
+          ),
+        ),
         data: (stats) => Padding(
           padding: const EdgeInsets.all(24.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Vos performances',
+              Text(
+                localization.statsScreenPerformancesHeaderLabel,
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 24),
 
-              StatRow(label: 'Parties jouées', value: stats.totalGames),
-              StatRow(label: 'Parties jouées contre l\'ordinateur', value: stats.totalGamesComputer),
-              StatRow(label: 'Parties jouées en local', value: stats.totalGamesLocal),
-              StatRow(label: 'Parties jouées avec le mode Endless', value: stats.totalGamesWithEndless),
               StatRow(
-                label: 'Victoires Joueur Bleu en local',
+                label: localization.statsScreenTotalGamesRowLabel,
+                value: stats.totalGames,
+              ),
+              StatRow(
+                label: localization.statsScreenTotalGamesComputerRowLabel,
+                value: stats.totalGamesComputer,
+              ),
+              StatRow(
+                label: localization.statsScreenTotalGamesLocalRowLabel,
+                value: stats.totalGamesLocal,
+              ),
+              StatRow(
+                label: localization.statsScreenTotalGamesEndlessRowLabel,
+                value: stats.totalGamesWithEndless,
+              ),
+              StatRow(
+                label: localization.statsScreenVictoryPlayerOneRowLabel,
                 value: stats.winsPlayerOneLocal,
               ),
               StatRow(
-                label: 'Victoires Joueur Rouge en local',
+                label: localization.statsScreenVictoryPlayerTwoRowLabel,
                 value: stats.winsPlayerTwoLocal,
               ),
               StatRow(
-                label: 'Victoires du Joueur contre l\'ordinateur',
+                label: localization.statsScreenVictoryVersusComputerRowLabel,
                 value: stats.winsPlayerVersusComputer,
               ),
-              StatRow(label: 'Matchs nuls', value: stats.draws),
+              StatRow(
+                label: localization.statsScreenTotalDrawsRowLabel,
+                value: stats.draws,
+              ),
               const Divider(height: 32),
-              StatRow(label: 'Série actuelle', value: stats.currentWinStreak),
-              StatRow(label: 'Meilleure série', value: stats.bestWinStreak),
+              StatRow(
+                label: localization.statsScreenCurrentStreakRowLabel,
+                value: stats.currentWinStreak,
+              ),
+              StatRow(
+                label: localization.statsScreenBestStreakRowLabel,
+                value: stats.bestWinStreak,
+              ),
               const Spacer(),
               Center(
                 child: Text(
-                  _getMotivationMessage(stats),
+                  _getMotivationMessage(stats, localization),
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
@@ -126,15 +164,20 @@ class StatsScreen extends ConsumerWidget {
     );
   }
 
-  String _getMotivationMessage(GameStats stats) {
-    if (stats.bestWinStreak >= 5) return '🔥 Série légendaire !';
-    if (stats.currentWinStreak >= 3) return '💪 Continue sur ta lancée !';
+  String _getMotivationMessage(GameStats stats, AppLocalizations localization) {
+    if (stats.bestWinStreak >= 5) {
+      return localization.statsScreenMotivationMessageBestStreakAboveFiveLabel;
+    }
+    if (stats.currentWinStreak >= 3) {
+      return localization.statsScreenMotivationMessageCurrentStreakAboveThreeLabel;
+    }
     if (stats.winsPlayerOneLocal +
             stats.winsPlayerTwoLocal +
             stats.winsPlayerVersusComputer ==
-        0)
-      return '🕹️ Commence ta première partie !';
-    return 'Bonne chance pour la prochaine partie !';
+        0) {
+      return localization.statsScreenMotivationStartFirstGameLabel;
+    }
+    return localization.statsScreenMotivationDefaultLabel;
   }
 }
 

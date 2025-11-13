@@ -6,10 +6,12 @@
 import 'dart:async' as _i6;
 
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:mockito/src/dummies.dart' as _i8;
 import 'package:tic_tac_toe/data/models/player.dart' as _i4;
 import 'package:tic_tac_toe/data/models/tile_state.dart' as _i3;
 import 'package:tic_tac_toe/data/repositories/computer_repository.dart' as _i2;
 import 'package:tic_tac_toe/data/repositories/stats_repository.dart' as _i5;
+import 'package:tic_tac_toe/presentation/l10n/app_localizations.dart' as _i7;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -65,4 +67,636 @@ class MockStatsRepository extends _i1.Mock implements _i5.StatsRepository {
             returnValueForMissingStub: _i6.Future<void>.value(),
           )
           as _i6.Future<void>);
+}
+
+/// A class which mocks [AppLocalizations].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAppLocalizations extends _i1.Mock implements _i7.AppLocalizations {
+  @override
+  String get localeName =>
+      (super.noSuchMethod(
+            Invocation.getter(#localeName),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#localeName),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#localeName),
+            ),
+          )
+          as String);
+
+  @override
+  String get appTitle =>
+      (super.noSuchMethod(
+            Invocation.getter(#appTitle),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#appTitle),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#appTitle),
+            ),
+          )
+          as String);
+
+  @override
+  String get statsScreenTitle =>
+      (super.noSuchMethod(
+            Invocation.getter(#statsScreenTitle),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenTitle),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenTitle),
+            ),
+          )
+          as String);
+
+  @override
+  String get refreshStatsDialogTooltip =>
+      (super.noSuchMethod(
+            Invocation.getter(#refreshStatsDialogTooltip),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#refreshStatsDialogTooltip),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#refreshStatsDialogTooltip),
+            ),
+          )
+          as String);
+
+  @override
+  String get refreshStatsDialogTitle =>
+      (super.noSuchMethod(
+            Invocation.getter(#refreshStatsDialogTitle),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#refreshStatsDialogTitle),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#refreshStatsDialogTitle),
+            ),
+          )
+          as String);
+
+  @override
+  String get refreshStatsDialogText =>
+      (super.noSuchMethod(
+            Invocation.getter(#refreshStatsDialogText),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#refreshStatsDialogText),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#refreshStatsDialogText),
+            ),
+          )
+          as String);
+
+  @override
+  String get cancelActionLabel =>
+      (super.noSuchMethod(
+            Invocation.getter(#cancelActionLabel),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#cancelActionLabel),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#cancelActionLabel),
+            ),
+          )
+          as String);
+
+  @override
+  String get confirmActionLabel =>
+      (super.noSuchMethod(
+            Invocation.getter(#confirmActionLabel),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#confirmActionLabel),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#confirmActionLabel),
+            ),
+          )
+          as String);
+
+  @override
+  String get addDemoStatsDialogTooltip =>
+      (super.noSuchMethod(
+            Invocation.getter(#addDemoStatsDialogTooltip),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#addDemoStatsDialogTooltip),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#addDemoStatsDialogTooltip),
+            ),
+          )
+          as String);
+
+  @override
+  String get addDemoStatsDialogTitle =>
+      (super.noSuchMethod(
+            Invocation.getter(#addDemoStatsDialogTitle),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#addDemoStatsDialogTitle),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#addDemoStatsDialogTitle),
+            ),
+          )
+          as String);
+
+  @override
+  String get addDemoStatsDialogText =>
+      (super.noSuchMethod(
+            Invocation.getter(#addDemoStatsDialogText),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#addDemoStatsDialogText),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#addDemoStatsDialogText),
+            ),
+          )
+          as String);
+
+  @override
+  String get statsScreenPerformancesHeaderLabel =>
+      (super.noSuchMethod(
+            Invocation.getter(#statsScreenPerformancesHeaderLabel),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenPerformancesHeaderLabel),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenPerformancesHeaderLabel),
+            ),
+          )
+          as String);
+
+  @override
+  String get statsScreenTotalGamesRowLabel =>
+      (super.noSuchMethod(
+            Invocation.getter(#statsScreenTotalGamesRowLabel),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenTotalGamesRowLabel),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenTotalGamesRowLabel),
+            ),
+          )
+          as String);
+
+  @override
+  String get statsScreenTotalGamesComputerRowLabel =>
+      (super.noSuchMethod(
+            Invocation.getter(#statsScreenTotalGamesComputerRowLabel),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenTotalGamesComputerRowLabel),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenTotalGamesComputerRowLabel),
+            ),
+          )
+          as String);
+
+  @override
+  String get statsScreenTotalGamesLocalRowLabel =>
+      (super.noSuchMethod(
+            Invocation.getter(#statsScreenTotalGamesLocalRowLabel),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenTotalGamesLocalRowLabel),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenTotalGamesLocalRowLabel),
+            ),
+          )
+          as String);
+
+  @override
+  String get statsScreenTotalGamesEndlessRowLabel =>
+      (super.noSuchMethod(
+            Invocation.getter(#statsScreenTotalGamesEndlessRowLabel),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenTotalGamesEndlessRowLabel),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenTotalGamesEndlessRowLabel),
+            ),
+          )
+          as String);
+
+  @override
+  String get statsScreenVictoryPlayerOneRowLabel =>
+      (super.noSuchMethod(
+            Invocation.getter(#statsScreenVictoryPlayerOneRowLabel),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenVictoryPlayerOneRowLabel),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenVictoryPlayerOneRowLabel),
+            ),
+          )
+          as String);
+
+  @override
+  String get statsScreenVictoryPlayerTwoRowLabel =>
+      (super.noSuchMethod(
+            Invocation.getter(#statsScreenVictoryPlayerTwoRowLabel),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenVictoryPlayerTwoRowLabel),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenVictoryPlayerTwoRowLabel),
+            ),
+          )
+          as String);
+
+  @override
+  String get statsScreenVictoryVersusComputerRowLabel =>
+      (super.noSuchMethod(
+            Invocation.getter(#statsScreenVictoryVersusComputerRowLabel),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenVictoryVersusComputerRowLabel),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenVictoryVersusComputerRowLabel),
+            ),
+          )
+          as String);
+
+  @override
+  String get statsScreenTotalDrawsRowLabel =>
+      (super.noSuchMethod(
+            Invocation.getter(#statsScreenTotalDrawsRowLabel),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenTotalDrawsRowLabel),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenTotalDrawsRowLabel),
+            ),
+          )
+          as String);
+
+  @override
+  String get statsScreenCurrentStreakRowLabel =>
+      (super.noSuchMethod(
+            Invocation.getter(#statsScreenCurrentStreakRowLabel),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenCurrentStreakRowLabel),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenCurrentStreakRowLabel),
+            ),
+          )
+          as String);
+
+  @override
+  String get statsScreenBestStreakRowLabel =>
+      (super.noSuchMethod(
+            Invocation.getter(#statsScreenBestStreakRowLabel),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenBestStreakRowLabel),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenBestStreakRowLabel),
+            ),
+          )
+          as String);
+
+  @override
+  String get statsScreenMotivationMessageBestStreakAboveFiveLabel =>
+      (super.noSuchMethod(
+            Invocation.getter(
+              #statsScreenMotivationMessageBestStreakAboveFiveLabel,
+            ),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(
+                #statsScreenMotivationMessageBestStreakAboveFiveLabel,
+              ),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(
+                #statsScreenMotivationMessageBestStreakAboveFiveLabel,
+              ),
+            ),
+          )
+          as String);
+
+  @override
+  String get statsScreenMotivationMessageCurrentStreakAboveThreeLabel =>
+      (super.noSuchMethod(
+            Invocation.getter(
+              #statsScreenMotivationMessageCurrentStreakAboveThreeLabel,
+            ),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(
+                #statsScreenMotivationMessageCurrentStreakAboveThreeLabel,
+              ),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(
+                #statsScreenMotivationMessageCurrentStreakAboveThreeLabel,
+              ),
+            ),
+          )
+          as String);
+
+  @override
+  String get statsScreenMotivationStartFirstGameLabel =>
+      (super.noSuchMethod(
+            Invocation.getter(#statsScreenMotivationStartFirstGameLabel),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenMotivationStartFirstGameLabel),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenMotivationStartFirstGameLabel),
+            ),
+          )
+          as String);
+
+  @override
+  String get statsScreenMotivationDefaultLabel =>
+      (super.noSuchMethod(
+            Invocation.getter(#statsScreenMotivationDefaultLabel),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenMotivationDefaultLabel),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#statsScreenMotivationDefaultLabel),
+            ),
+          )
+          as String);
+
+  @override
+  String get coinFlipStartButtonLabel =>
+      (super.noSuchMethod(
+            Invocation.getter(#coinFlipStartButtonLabel),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#coinFlipStartButtonLabel),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#coinFlipStartButtonLabel),
+            ),
+          )
+          as String);
+
+  @override
+  String get gameControlsStartComputerActionLabel =>
+      (super.noSuchMethod(
+            Invocation.getter(#gameControlsStartComputerActionLabel),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#gameControlsStartComputerActionLabel),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#gameControlsStartComputerActionLabel),
+            ),
+          )
+          as String);
+
+  @override
+  String get gameControlsStartLocalActionLabel =>
+      (super.noSuchMethod(
+            Invocation.getter(#gameControlsStartLocalActionLabel),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#gameControlsStartLocalActionLabel),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#gameControlsStartLocalActionLabel),
+            ),
+          )
+          as String);
+
+  @override
+  String get gameControlsRestartActionLabel =>
+      (super.noSuchMethod(
+            Invocation.getter(#gameControlsRestartActionLabel),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#gameControlsRestartActionLabel),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#gameControlsRestartActionLabel),
+            ),
+          )
+          as String);
+
+  @override
+  String get gameControlsEndlessModeTitle =>
+      (super.noSuchMethod(
+            Invocation.getter(#gameControlsEndlessModeTitle),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#gameControlsEndlessModeTitle),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#gameControlsEndlessModeTitle),
+            ),
+          )
+          as String);
+
+  @override
+  String get gameControlsEndlessModeDialogText =>
+      (super.noSuchMethod(
+            Invocation.getter(#gameControlsEndlessModeDialogText),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#gameControlsEndlessModeDialogText),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#gameControlsEndlessModeDialogText),
+            ),
+          )
+          as String);
+
+  @override
+  String get okActionLabel =>
+      (super.noSuchMethod(
+            Invocation.getter(#okActionLabel),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#okActionLabel),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#okActionLabel),
+            ),
+          )
+          as String);
+
+  @override
+  String get gameExtensionStatusDraw =>
+      (super.noSuchMethod(
+            Invocation.getter(#gameExtensionStatusDraw),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#gameExtensionStatusDraw),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#gameExtensionStatusDraw),
+            ),
+          )
+          as String);
+
+  @override
+  String get gameExtensionStatusDefault =>
+      (super.noSuchMethod(
+            Invocation.getter(#gameExtensionStatusDefault),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#gameExtensionStatusDefault),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#gameExtensionStatusDefault),
+            ),
+          )
+          as String);
+
+  @override
+  String get playerOneExtensionName =>
+      (super.noSuchMethod(
+            Invocation.getter(#playerOneExtensionName),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#playerOneExtensionName),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#playerOneExtensionName),
+            ),
+          )
+          as String);
+
+  @override
+  String get playerTwoExtensionName =>
+      (super.noSuchMethod(
+            Invocation.getter(#playerTwoExtensionName),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#playerTwoExtensionName),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.getter(#playerTwoExtensionName),
+            ),
+          )
+          as String);
+
+  @override
+  String loadingErrorText(String? err) =>
+      (super.noSuchMethod(
+            Invocation.method(#loadingErrorText, [err]),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.method(#loadingErrorText, [err]),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.method(#loadingErrorText, [err]),
+            ),
+          )
+          as String);
+
+  @override
+  String coinFlipResultLabel(String? playerName) =>
+      (super.noSuchMethod(
+            Invocation.method(#coinFlipResultLabel, [playerName]),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.method(#coinFlipResultLabel, [playerName]),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.method(#coinFlipResultLabel, [playerName]),
+            ),
+          )
+          as String);
+
+  @override
+  String gameExtensionStatusWinner(String? playerName) =>
+      (super.noSuchMethod(
+            Invocation.method(#gameExtensionStatusWinner, [playerName]),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.method(#gameExtensionStatusWinner, [playerName]),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.method(#gameExtensionStatusWinner, [playerName]),
+            ),
+          )
+          as String);
+
+  @override
+  String gameExtensionStatusTurnPlayer(String? playerName) =>
+      (super.noSuchMethod(
+            Invocation.method(#gameExtensionStatusTurnPlayer, [playerName]),
+            returnValue: _i8.dummyValue<String>(
+              this,
+              Invocation.method(#gameExtensionStatusTurnPlayer, [playerName]),
+            ),
+            returnValueForMissingStub: _i8.dummyValue<String>(
+              this,
+              Invocation.method(#gameExtensionStatusTurnPlayer, [playerName]),
+            ),
+          )
+          as String);
 }
